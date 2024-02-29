@@ -1,0 +1,2 @@
+#umount forcely
+umount -l [dir]

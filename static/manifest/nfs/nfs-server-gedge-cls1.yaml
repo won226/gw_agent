@@ -1,0 +1,69 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: nfs-server-gedge-cls1
+  namespace: gedge
+  labels:
+    app: nfs-server-gedge-cls1
+spec:
+  type: ClusterIP
+  selector:
+    app: nfs-server-gedge-cls1
+  ports:
+    - name: tcp-2049
+      port: 2049
+      protocol: TCP
+    - name: api
+      port: 8080
+      protocol: TCP
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: nfs-server-gedge-cls1
+  namespace: gedge
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nfs-server-gedge-cls1
+  template:
+    metadata:
+      name: nfs-server-gedge-cls1
+      labels:
+        app: nfs-server-gedge-cls1
+    spec:
+      nodeName: etri-ce-c1m
+      containers:
+        - name: nfss
+          image: itsthenetwork/nfs-server-alpine:12
+          env:
+            - name: SHARED_DIRECTORY
+              value: "/data"
+            - name: SYNC
+              value: "true"
+          volumeMounts:
+            - mountPath: /data
+              name: nfs-vol
+          securityContext:
+            privileged: true
+          ports:
+            - name: tcp-2049
+              containerPort: 2049
+              protocol: TCP
+        - name: volmgr
+          image: krunivs/volmgr:0.1
+          env:
+            - name: API_PORT
+              value: "8080"
+          volumeMounts:
+            - mountPath: /volmgr
+              name: nfs-vol
+      volumes:
+        - name: nfs-vol
+          hostPath:
+            path: /mnt/nfs-vol # modify this to specify another path to store nfs share data
+            type: DirectoryOrCreate
+      tolerations:
+        - key: "node-role.kubernetes.io/master"
+          operator: "Equal"

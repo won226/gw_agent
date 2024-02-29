@@ -1,0 +1,42 @@
+apiVersion: gedgemig.gedge.etri.kr/v1
+kind: Livmigration
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"gedgemig.gedge.etri.kr/v1","kind":"Livmigration","metadata":{"annotations":{},"labels":{"name":"checkpoint-28f96783-3d0a-4848-a204-d1896c2b454a"},"name":"checkpoint-28f96783-3d0a-4848-a204-d1896c2b454a","namespace":"default"},"spec":{"operation":"checkpoint","replicas":0,"selector":{"migPod":null},"snapshotPath":"/mnt/migrate/gedge-cls1","sourcePod":"pod-test1"}}
+  creationTimestamp: "2023-10-17T15:27:11Z"
+  generation: 1
+  labels:
+    name: checkpoint-28f96783-3d0a-4848-a204-d1896c2b454a
+  managedFields:
+  - apiVersion: gedgemig.gedge.etri.kr/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:kubectl.kubernetes.io/last-applied-configuration: {}
+        f:labels:
+          .: {}
+          f:name: {}
+      f:spec:
+        .: {}
+        f:operation: {}
+        f:replicas: {}
+        f:selector: {}
+        f:snapshotPath: {}
+        f:sourcePod: {}
+    manager: kubectl-client-side-apply
+    operation: Update
+    time: "2023-10-17T15:27:11Z"
+  name: checkpoint-28f96783-3d0a-4848-a204-d1896c2b454a
+  namespace: default
+  resourceVersion: "1330259"
+  selfLink: /apis/gedgemig.gedge.etri.kr/v1/namespaces/default/livmigrations/checkpoint-28f96783-3d0a-4848-a204-d1896c2b454a
+  uid: 209dbfdc-ed8b-4254-8331-6a39130c2c18
+spec:
+  operation: checkpoint
+  replicas: 0
+  selector: {}
+  snapshotPath: /mnt/migrate/gedge-cls1
+  sourcePod: pod-test1

@@ -1,0 +1,39 @@
+# template-nfs-client-local.yaml
+
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: nfs-client
+  namespace: gedge
+  labels:
+    app: nfs-client-west-cls
+spec:
+  selector:
+    matchLabels:
+      app: nfs-client
+  template:
+    metadata:
+      name: nfs-client
+      labels:
+        app: nfs-client
+    spec:
+      containers:
+        - name: nfs-client
+          image: krunivs/nfs4-client:0.31
+          env:
+            - name: DOMAIN_NAME
+              value: "nfs-server.gedge.svc.clusterset.local"
+            - name: SHARE
+              value: "west-cls"
+            - name: MOUNTPOINT
+              value: "/mnt/migrate/west-cls"
+          securityContext:
+            privileged: true
+          ports:
+            - name: tcp-2049
+              containerPort: 2049
+              protocol: TCP
+      tolerations:
+        - key: "node-role.kubernetes.io/master"
+          operator: "Equal"
+      hostPID: true

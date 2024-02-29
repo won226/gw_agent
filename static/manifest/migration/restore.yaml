@@ -1,0 +1,15 @@
+apiVersion: gedgemig.gedge.etri.kr/v1
+kind: Livmigration
+metadata:
+  name: restore-{migration_id}
+  namespace: {namespace}
+  labels:
+    name: restore-{migration_id}
+spec:
+  replicas: 0
+  operation: restore
+  snapshotPath: /mnt/migrate/{local_cluster}
+  sourcePod: {source_pod}
+  destaddr: {target_node}
+  selector:
+    migPod:

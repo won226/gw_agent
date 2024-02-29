@@ -1,0 +1,39 @@
+# template-nfs-client.yaml
+
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: nfs-client-{cluster_id}
+  namespace: gedge
+  labels:
+    app: nfs-client-{cluster_id}
+spec:
+  selector:
+    matchLabels:
+      app: nfs-client-{cluster_id}
+  template:
+    metadata:
+      name: nfs-client-{cluster_id}
+      labels:
+        app: nfs-client-{cluster_id}
+    spec:
+      containers:
+        - name: nfs-client-{cluster_id}
+          image: krunivs/nfs4-client:0.31
+          env:
+            - name: DOMAIN_NAME
+              value: "{nfs_server_domain}"
+            - name: SHARE
+              value: "{cluster_id}"
+            - name: MOUNTPOINT
+              value: "/mnt/migrate/{cluster_id}"
+          securityContext:
+            privileged: true
+          ports:
+            - name: tcp-2049
+              containerPort: 2049
+              protocol: TCP
+      tolerations:
+        - key: "node-role.kubernetes.io/master"
+          operator: "Equal"
+      hostPID: true

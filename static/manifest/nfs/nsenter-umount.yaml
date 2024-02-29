@@ -1,0 +1,20 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: nsenter-{node}
+  namespace: gedge
+spec:
+  nodeSelector:
+    kubernetes.io/hostname: {node}
+  hostPID: true
+  hostNetwork: true
+  restartPolicy: Never
+  tolerations:
+    - key: "node-role.kubernetes.io/master"
+      operator: "Equal"
+  containers:
+    - name: nsneter
+      image: alexeiled/nsenter
+      command: ["/nsenter", "--all", "--target=1", "--", "umount", "-l", "/mnt/migrate/{volume}"]
+      securityContext:
+        privileged: true

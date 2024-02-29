@@ -1,0 +1,13 @@
+apiVersion: gedgemig.gedge.etri.kr/v1
+kind: Livmigration
+metadata:
+  name: chkpoint-002
+  labels:
+    name: chkpoint-002
+spec:
+  replicas: 0
+  operation: checkpoint
+  snapshotPath: /mnt/migrate/gedge-cls1
+  sourcePod: video 
+  selector:
+          gedgemig:  

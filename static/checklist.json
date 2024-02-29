@@ -1,0 +1,233 @@
+{
+    "K8sVersionChecked": {
+        "required_version": "v1.19"
+    },
+    "K8sNamespaceCreated": [
+        {
+            "kind": "namespace",
+            "name": "kube-system"
+        },
+        {
+            "kind": "namespace",
+            "name": "default"
+        }
+    ],
+    "CoreDnsReady": [
+        {
+            "kind": "service",
+            "namespace": "kube-system",
+            "name": "kube-dns"
+        },
+        {
+            "kind": "deployment",
+            "namespace": "kube-system",
+            "name": "coredns"
+        }
+    ],
+    "KubeProxyReady": [
+        {
+            "kind": "daemonset",
+            "namespace": "kube-system",
+            "name": "kube-proxy"
+        }
+    ],
+    "EtcdReady": [
+        {
+            "kind": "pod",
+            "namespace": "kube-system",
+            "name": "etcd-{master_node}"
+        }
+    ],
+    "KubeApiServerReady": [
+        {
+            "kind": "pod",
+            "namespace": "kube-system",
+            "name": "kube-apiserver-{master_node}"
+        }
+    ],
+    "KubeControllerManagerReady": [
+        {
+            "kind": "pod",
+            "namespace": "kube-system",
+            "name": "kube-controller-manager-{master_node}"
+        }
+    ],
+    "KubeSchedulerReady": [
+        {
+            "kind": "pod",
+            "namespace": "kube-system",
+            "name": "kube-scheduler-{master_node}"
+        }
+    ],
+    "GEdgeNamespaceCreated": [
+        {
+            "kind": "namespace",
+            "name": "gedge"
+        }
+    ],
+    "PrometheusServerReady": [
+        {
+            "kind": "service",
+            "namespace": "monitoring",
+            "name": "prometheus-service"
+        },
+        {
+            "kind": "deployment",
+            "namespace": "monitoring",
+            "name": "prometheus-deployment"
+        }
+    ],
+    "LocalPrometheusServerConnected": false,
+    "NodeExporterReady": [
+        {
+            "kind": "service",
+            "namespace": "monitoring",
+            "name": "node-exporter"
+        },
+        {
+            "kind": "daemonset",
+            "namespace": "monitoring",
+            "name": "node-exporter"
+        }
+    ],
+    "K8sStateMetricsReady": [
+        {
+            "kind": "service",
+            "namespace": "kube-system",
+            "name": "kube-state-metrics"
+        },
+        {
+            "kind": "deployment",
+            "namespace": "kube-system",
+            "name": "kube-state-metrics"
+        }
+    ],
+    "SubmarinerNamespaceCreated": [
+        {
+            "kind": "namespace",
+            "name": "submariner-operator"
+        },
+        {
+            "kind": "namespace",
+            "name": "submariner-k8s-broker"
+        }
+    ],
+    "SubmarinerOperatorReady": [
+        {
+            "kind": "deployment",
+            "namespace": "submariner-operator",
+            "name": "submariner-operator"
+        }
+    ],
+    "SubmarinerOperatorServiceReady": [
+        {
+            "kind": "service",
+            "namespace": "submariner-operator",
+            "name": "submariner-operator-metrics"
+        }
+    ],
+    "SubmarinerGatewayReady": [
+        {
+            "kind": "service",
+            "namespace": "submariner-operator",
+            "name": "submariner-gateway-metrics"
+        },
+        {
+            "kind": "daemonset",
+            "namespace": "submariner-operator",
+            "name": "submariner-gateway"
+        }
+    ],
+    "SubmarinerGlobalnetReady": [
+        {
+            "kind": "service",
+            "namespace": "submariner-operator",
+            "name": "submariner-globalnet-metrics"
+        },
+        {
+            "kind": "daemonset",
+            "namespace": "submariner-operator",
+            "name": "submariner-globalnet"
+        }
+    ],
+    "SubmarinerRouteAgentReady": [
+        {
+            "kind": "daemonset",
+            "namespace": "submariner-operator",
+            "name": "submariner-routeagent"
+        }
+    ],
+    "SubmarinerLighthouseAgentReady": [
+        {
+            "kind": "service",
+            "namespace": "submariner-operator",
+            "name": "submariner-lighthouse-agent-metrics"
+        },
+        {
+            "kind": "deployment",
+            "namespace": "submariner-operator",
+            "name": "submariner-lighthouse-agent"
+        }
+
+    ],
+    "SubmarinerLighthouseCoreDnsReady": [
+        {
+            "kind": "service",
+            "namespace": "submariner-operator",
+            "name": "submariner-lighthouse-coredns"
+        },
+        {
+            "kind": "service",
+            "namespace": "submariner-operator",
+            "name": "submariner-lighthouse-coredns-metrics"
+        },
+        {
+            "kind": "deployment",
+            "namespace": "submariner-operator",
+            "name": "submariner-lighthouse-coredns"
+        }
+    ],
+    "RemoteClusterConnected": false,
+    "LocalNfsServerReady": [
+        {
+            "kind": "service",
+            "namespace": "gedge",
+            "name": "nfs-server-{cluster_id}"
+        },
+        {
+          "kind": "deployment",
+            "namespace": "gedge",
+            "name": "nfs-server-{cluster_id}"
+        }
+    ],
+    "LocalNfsServerConnected": false,
+    "LocalNfsClientReady": [
+        {
+            "kind": "daemonset",
+            "namespace": "gedge",
+            "name": "nfs-client-{cluster_id}"
+        }
+    ],
+    "LocalNfsServerExported": [
+        {
+            "kind": "service",
+            "namespace": "gedge",
+            "name": "nfs-server-{cluster_id}"
+        }
+    ],
+    "RemoteNfsServerImported": [
+        {
+            "kind": "service",
+            "namespace": "gedge",
+            "name": "nfs-server-{remote_cluster_id}"
+        }
+    ],
+    "RemoteNfsServerConnected": false,
+    "RemoteNfsClientReady": [
+        {
+            "kind": "daemonset",
+            "namespace": "gedge",
+            "name": "nfs-client-{remote_cluster_id}"
+        }
+    ]
+}

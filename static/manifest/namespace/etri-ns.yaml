@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  createTimestamp: null
+  name: gedge
+spec: {}
+status: {}

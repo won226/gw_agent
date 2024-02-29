@@ -1,0 +1,14 @@
+apiVersion: gedgemig.gedge.etri.kr/v1
+kind: Livmigration
+metadata:
+  name: restore-001
+  labels:
+    name: restore-001
+spec:
+  replicas: 0
+  operation: restore
+  snapshotPath: /mnt/migrate/gedge-cls1
+  sourcePod: nginx-demo
+  destaddr: etri-ce-c2w1
+  selector:
+    migPod: 
